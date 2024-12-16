@@ -59,6 +59,50 @@
       margin: 10px auto;
       display: block; /* 中央揃え */
     }
+        @media screen and (max-width: 768px) {
+      body {
+        font-size: 14px; /* フォントサイズを小さめに調整 */
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        width: 95%; /* コンテナの幅をスマホ画面に合わせる */
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      #healthBarImage {
+        width: 100%; /* 画面幅に合わせて自動リサイズ */
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      label, input, button {
+        font-size: 1rem;
+        margin-top: 5px;
+      }
+
+      /* 入力欄とボタンを縦並びにする */
+      div input, div button {
+        display: block;
+        width: 100%;
+        margin: 5px auto;
+      }
+    }
+
+    /* 横画面用のスタイル */
+    @media screen and (orientation: landscape) and (max-height: 500px) {
+      #healthBarImage {
+        width: 60%; /* 横画面では画像の幅を縮小 */
+        margin-bottom: 5px;
+      }
+
+      .container {
+        padding: 5px;
+      }
+    }
+
   </style>
 </head>
 <body>
