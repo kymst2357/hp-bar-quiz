@@ -59,36 +59,56 @@
       margin: 10px auto;
       display: block; /* 中央揃え */
     }
-        @media screen and (max-width: 768px) {
-      body {
-        font-size: 14px; /* フォントサイズを小さめに調整 */
-        margin: 0;
-        padding: 0;
-      }
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px; /* 全体のフォントサイズ調整 */
+    margin: 0;
+    padding: 0;
+  }
 
-      .container {
-        width: 95%; /* コンテナの幅をスマホ画面に合わせる */
-        padding: 10px;
-        box-sizing: border-box;
-      }
+  .container {
+    width: 95%;
+    max-width: 400px; /* コンテナの最大幅 */
+    padding: 10px;
+    box-sizing: border-box;
+  }
 
-      #healthBarImage {
-        width: 100%; /* 画面幅に合わせて自動リサイズ */
-        height: auto;
-        margin-bottom: 10px;
-      }
+  #healthBarImage {
+    width: 100%; /* 画像を画面幅いっぱいに */
+    height: auto;
+    margin-bottom: 15px;
+  }
 
-      label, input, button {
-        font-size: 1rem;
-        margin-top: 5px;
-      }
+  /* 入力欄とボタンの配置修正 */
+  div {
+    display: flex;
+    flex-direction: column; /* 縦並び */
+    align-items: center; /* 中央揃え */
+  }
 
-      /* 入力欄とボタンを縦並びにする */
-      div input, div button {
-        display: block;
-        width: 100%;
-        margin: 5px auto;
-      }
+  input {
+    width: 90%; /* 入力欄を広げる */
+    margin: 5px 0; /* 上下の余白 */
+    padding: 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    text-align: center; /* 文字を中央に */
+  }
+
+  button {
+    width: 90%; /* ボタンも広げる */
+    margin: 5px 0; /* 上下の余白 */
+    padding: 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  #resultMessage {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+}
     }
 
   </style>
