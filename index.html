@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+  let startTime; // クイズ開始時間
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -186,7 +187,8 @@
     function startQuiz(selectedDifficulty, selectedMode) {
       difficulty = selectedDifficulty;
       quizMode = selectedMode;
-
+      // クイズ開始時に現在時刻を記録
+       startTime = Date.now();
       // 変数リセット
       totalScore = 0;
       questionCount = 0;
@@ -372,38 +374,42 @@ function checkAnswer() {
     // 10問終了時の結果画面
     // ---------------------------
     function showScoreBoard() {
-      // クイズ画面を隠してスコアボードへ
-      document.getElementById("quizContainer").classList.add("hidden");
-      document.getElementById("scoreBoard").classList.remove("hidden");
+  // クイズ終了時の現在時刻を取得
+  const endTime = Date.now();
 
-      // スコア表示
-      const scoreBoardText = document.getElementById("scoreBoardText");
-      scoreBoardText.textContent = `あなたの合計得点は ${totalScore} 点です！`;
+  // 経過時間を計算（ミリ秒 → 秒）
+  const elapsedTime = Math.floor((endTime - startTime) / 1000);
+  const minutes = Math.floor(elapsedTime / 60); // 分
+  const seconds = elapsedTime % 60; // 秒
 
-      // result画像の選択ロジック
-      const scoreBoardImage = document.getElementById("scoreBoardImage");
+  // 結果画面の表示
+  document.getElementById("quizContainer").classList.add("hidden");
+  document.getElementById("scoreBoard").classList.remove("hidden");
 
-      if (difficulty === 'easy') {
-        // 初級者向け: 0～15 → result1、16～20 → result2
-        if (totalScore <= 15) {
-          scoreBoardImage.src = "img/result1.png";
-        } else {
-          scoreBoardImage.src = "img/result2.png";
-        }
-      } else {
-        // 上級者向け
-        // 0～10 → result3, 11～20 → result1, 21～29 → result4, 30 → result5
-        if (totalScore <= 10) {
-          scoreBoardImage.src = "img/result3.png";
-        } else if (totalScore <= 20) {
-          scoreBoardImage.src = "img/result1.png";
-        } else if (totalScore <= 29) {
-          scoreBoardImage.src = "img/result4.png";
-        } else {
-          scoreBoardImage.src = "img/result5.png";
-        }
-      }
+  const scoreBoardText = document.getElementById("scoreBoardText");
+  scoreBoardText.textContent = `あなたの合計得点は ${totalScore} 点です！\nクリアタイム：${minutes}分${seconds}秒`;
+
+  const scoreBoardImage = document.getElementById("scoreBoardImage");
+
+  if (difficulty === 'easy') {
+    if (totalScore <= 15) {
+      scoreBoardImage.src = "img/result1.png";
+    } else {
+      scoreBoardImage.src = "img/result2.png";
     }
+  } else {
+    if (totalScore <= 10) {
+      scoreBoardImage.src = "img/result3.png";
+    } else if (totalScore <= 20) {
+      scoreBoardImage.src = "img/result1.png";
+    } else if (totalScore <= 29) {
+      scoreBoardImage.src = "img/result4.png";
+    } else {
+      scoreBoardImage.src = "img/result5.png";
+    }
+  }
+}
+
 
     // ---------------------------
     // 全角数字を半角数字に変換
