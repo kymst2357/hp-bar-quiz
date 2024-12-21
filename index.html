@@ -171,14 +171,14 @@
     let imageFiles = [];      // 出題用ファイル名の配列
     let difficulty = "";      // 'easy' or 'advanced'
     let quizMode = "";        // 'endless' or '10question'
-    let startTime; // クイズ開始時間
     
     // スコア・カウント用
     let totalScore = 0;
     let questionCount = 0;
     let correctAnswers = 0;   // エンドレス用の正解数
     let totalAnswers = 0;     // エンドレス用の回答数
-
+　　let startTime;            // クイズ開始時間（クリアタイム計算用）
+    
     const MAX_QUESTIONS = 10; // 10問モードの問題数
 
     // ---------------------------
